@@ -28,4 +28,4 @@ jobs:
     # uses: zaproxy/action-baseline@3f53f375845c0b410cb54dde95f77516fc4fcf4c
       uses: zaproxy/action-baseline@v0.4.0
       with: 
-          target: https://b2d4intakeapp.azurewebsites.net
+          target: https://intakeapp.azurewebsites.net/
