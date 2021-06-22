@@ -29,7 +29,7 @@ namespace ArticleApis
         {
             services.AddDbContext<ArticleContext> (opt => opt.UseInMemoryDatabase("b2d_4_4_intakeapp_db"));
             services.AddScoped<ArticleContext>();
-
+            services.AddRazorPages();
             services.AddControllers();
         }
 
@@ -50,6 +50,7 @@ namespace ArticleApis
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
     }
