@@ -47,6 +47,8 @@ namespace ArticleApis
 
             app.UseAuthorization();
 
+            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
