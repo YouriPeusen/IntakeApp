@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ArticleApis.Models;
-using IntakeApp.Models;
+using IntakeApp.Repository;
+using IntakeApp.Repository.Models;
 
 namespace ArticleApis.Controllers
 {
@@ -25,22 +26,26 @@ namespace ArticleApis.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Article>>> GetArticles()
         {
-            return await _context.Articles.ToListAsync();
+            using (var contextt = new b2d_4_4_intakeapp_dbDbContext())
+            {
+                return await contextt.Articles.ToListAsync();
+            }
+            
         }
 
         // GET: api/Articles/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Article>> GetArticle(int id)
-        {
-            var article = await _context.Articles.FindAsync(id);
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Article>> GetArticle(int id)
+        //{
+        //    var article = await _context.Articles.FindAsync(id);
 
-            if (article == null)
-            {
-                return NotFound();
-            }
+        //    if (article == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return article;
-        }
+        //    return article;
+        //}
 
         //[HttpGet]
         //public async Task<ActionResult<IEnumerable<Article>>> GetArticles()
@@ -52,67 +57,67 @@ namespace ArticleApis.Controllers
         // PUT: api/Articles/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutArticle(int id, Article article)
-        {
-            if (id != article.ArticleID)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutArticle(int id, Article article)
+        //{
+        //    if (id != article.ArticleID)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(article).State = EntityState.Modified;
+        //    _context.Entry(article).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ArticleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ArticleExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        // POST: api/Articles
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Article>> PostArticle(Article article)
-        {
-            _context.Articles.Add(article);
-            await _context.SaveChangesAsync();
+        //// POST: api/Articles
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
+        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //[HttpPost]
+        //public async Task<ActionResult<Article>> PostArticle(Article article)
+        //{
+        //    _context.Articles.Add(article);
+        //    await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetArticle", new { id = article.articleId }, article);
-            return CreatedAtAction(nameof(GetArticle), new { id = article.ArticleID }, article);
-        }
+        //    //return CreatedAtAction("GetArticle", new { id = article.articleId }, article);
+        //    return CreatedAtAction(nameof(GetArticle), new { id = article.ArticleID }, article);
+        //}
 
-        // DELETE: api/Articles/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Article>> DeleteArticle(int id)
-        {
-            var article = await _context.Articles.FindAsync(id);
-            if (article == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Articles/5
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Article>> DeleteArticle(int id)
+        //{
+        //    var article = await _context.Articles.FindAsync(id);
+        //    if (article == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Articles.Remove(article);
-            await _context.SaveChangesAsync();
+        //    _context.Articles.Remove(article);
+        //    await _context.SaveChangesAsync();
 
-            return article;
-        }
+        //    return article;
+        //}
 
-        private bool ArticleExists(int id)
-        {
-            return _context.Articles.Any(e => e.ArticleID == id);
-        }
+        //private bool ArticleExists(int id)
+        //{
+        //    return _context.Articles.Any(e => e.ArticleID == id);
+        //}
     }
 }
