@@ -36,8 +36,10 @@ namespace ArticleApis
             services.AddDbContext<ProductContext>(opt => opt.UseInMemoryDatabase("b2d_4_4_intakeapp_db"));
             services.AddScoped<ProductContext>();
 
-
+            services.AddRazorPages();
             services.AddControllers();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +59,7 @@ namespace ArticleApis
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
     }
