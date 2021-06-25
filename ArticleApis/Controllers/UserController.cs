@@ -9,6 +9,7 @@ using ArticleApis.Models;
 using IntakeApp.Repository;
 using IntakeApp.Repository.Models;
 using IntakeApp.Classes;
+using Newtonsoft.Json;
 
 namespace ArticleApis.Controllers
 {
@@ -35,12 +36,14 @@ namespace ArticleApis.Controllers
 
         }
 
-        // POST
+        //POST
         [HttpPost]
-        public void InsertNewUser([FromBody]int userid, string firstname, string lastname, string username, string password, int points)
+        public void InsertNewUser([FromBody] object user)
         {
-            IntakeApp.Classes.User user = new IntakeApp.Classes.User(userid, firstname, lastname, username, password, points);
-            dal.AddNewUser(user);
+            string json = JsonConvert.SerializeObject(user);
+            IntakeApp.Classes.User deserializedProduct = JsonConvert.DeserializeObject<IntakeApp.Classes.User>(json);
+
+            dal.AddNewUser(deserializedProduct);
 
         }
     }

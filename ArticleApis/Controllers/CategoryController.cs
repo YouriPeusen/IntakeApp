@@ -4,6 +4,7 @@ using IntakeApp.Repository;
 using IntakeApp.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -26,12 +27,14 @@ namespace ArticleApis.Controllers
             _context = context;
         }
 
-        // POST
+        //POST
         [HttpPost]
-        public void InsertNewCategory([FromBody]int CategoryId, string CategoryName, int Points)
+        public void InsertNewCategory([FromBody] object category)
         {
-            IntakeApp.Classes.Category category = new IntakeApp.Classes.Category(CategoryId, CategoryName, Points);
-            dal.AddNewCategory(category);
+            string json = JsonConvert.SerializeObject(category);
+            IntakeApp.Classes.Category deserializedProduct = JsonConvert.DeserializeObject<IntakeApp.Classes.Category>(json);
+
+            dal.AddNewCategory(deserializedProduct);
 
         }
     }
