@@ -65,7 +65,7 @@ namespace IntakeApp.Classes
         {
             SqlConnection con = databaseConnect();
 
-            SqlCommand cmd = new SqlCommand("insert into Categories (CategoryId, CategoryName, Points) values (@categoryId," +
+            SqlCommand cmd = new SqlCommand("insert into Categories (CategoryID, CategoryName, Points) values (@categoryId," +
                 "@categoryName,@points)", con);
 
             cmd.Parameters.AddWithValue("@categoryId", category.GetCategoryId());

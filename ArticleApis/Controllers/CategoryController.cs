@@ -28,8 +28,9 @@ namespace ArticleApis.Controllers
 
         // POST
         [HttpPost]
-        public void InsertNewCategory(IntakeApp.Classes.Category category)
+        public void InsertNewCategory([FromBody]int CategoryId, string CategoryName, int Points)
         {
+            IntakeApp.Classes.Category category = new IntakeApp.Classes.Category(CategoryId, CategoryName, Points);
             dal.AddNewCategory(category);
 
         }

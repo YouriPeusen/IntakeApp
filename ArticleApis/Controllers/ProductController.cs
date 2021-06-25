@@ -39,8 +39,9 @@ namespace ArticleApis.Controllers
 
         // POST
         [HttpPost]
-        public void InsertNewProduct(IntakeApp.Classes.Product product)
+        public void InsertNewProduct([FromBody]int productId, int categoryId, string productName, string productDescription)
         {
+            IntakeApp.Classes.Product product = new IntakeApp.Classes.Product(productId, categoryId, productName, productDescription);
             dal.AddNewProduct(product);
 
         }

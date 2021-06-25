@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ArticleApis.Models;
+using Newtonsoft.Json;
 
 namespace ArticleApis
 {
@@ -38,6 +39,8 @@ namespace ArticleApis
 
             services.AddDbContext<CategoryContext>(opt => opt.UseInMemoryDatabase("b2d_4_4_intakeapp_db"));
             services.AddScoped<CategoryContext>();
+
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddRazorPages();
             services.AddControllers();

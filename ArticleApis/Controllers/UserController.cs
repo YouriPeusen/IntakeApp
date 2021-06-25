@@ -37,8 +37,9 @@ namespace ArticleApis.Controllers
 
         // POST
         [HttpPost]
-        public void InsertNewUser(IntakeApp.Classes.User user)
+        public void InsertNewUser([FromBody]int userid, string firstname, string lastname, string username, string password, int points)
         {
+            IntakeApp.Classes.User user = new IntakeApp.Classes.User(userid, firstname, lastname, username, password, points);
             dal.AddNewUser(user);
 
         }
