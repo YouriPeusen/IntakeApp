@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ArticleApis.Models;
 using IntakeApp.Repository;
 using IntakeApp.Repository.Models;
+using IntakeApp.Classes;
 
 namespace ArticleApis.Controllers
 {
@@ -15,6 +16,7 @@ namespace ArticleApis.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        Dal dal = new Dal();
         private readonly UserContext _context;
 
         public UserController(UserContext context)
@@ -24,7 +26,7 @@ namespace ArticleApis.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<IntakeApp.Repository.Models.User>>> GetUsers()
         {
             using (var contextt = new b2d_4_4_intakeapp_dbDbContext())
             {
@@ -33,5 +35,13 @@ namespace ArticleApis.Controllers
 
         }
 
+        // POST
+        [HttpPost]
+        public void InsertNewUser([FromBody]int userid, string firstname, string lastname, string username, string password, int points)
+        {
+            IntakeApp.Classes.User user = new IntakeApp.Classes.User(userid, firstname, lastname, username, password, points);
+            dal.AddNewUser(user);
+
+        }
     }
 }
