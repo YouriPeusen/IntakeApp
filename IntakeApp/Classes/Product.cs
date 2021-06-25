@@ -21,6 +21,10 @@ namespace IntakeApp.Classes
             this.productDescription = _productDescription;
         }
 
+        public int getId()
+        {
+            return this.productId;
+        }
         public int getCategory()
         {
             return this.categoryId;
