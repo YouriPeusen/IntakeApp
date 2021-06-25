@@ -189,14 +189,18 @@
         <td class="auto-style22"></td>
         <td class="auto-style14">Category</td>
         <td class="auto-style12">
-            <asp:DropDownList ID="categoryChooser" runat="server" DataSourceID="SqlDataSource2" DataTextField="CategoryName" DataValueField="CategoryID" CssClass="auto-style15"></asp:DropDownList>
+            <select runat="server" DataSourceID="SqlDataSource2" class="form-control" id="StudentGender" name="StudentGender">
+                <option></option>
+                <option></option>
+                <option></option>
+            </select>
         </td>
     </tr>
     <tr>
         <td class="auto-style3">&nbsp;</td>
         <td class="auto-style16">Product </td>
         <td>
-            <select class="form-control" id="StudentGender" name="StudentGender">
+            <select runat="server" DataSourceID="SqlDataSource2" class="form-control" id="StudentGender" name="StudentGender">
                 <option></option>
                 <option></option>
                 <option></option>
@@ -214,7 +218,7 @@
         <td class="auto-style2">&nbsp;</td>
         <td class="auto-style16">Status <!-- misschien automatiseren --></td>
         <td>
-            <select class="form-control" id="StudentGender" name="StudentGender">
+            <select runat="server" class="form-control" id="StudentGender" name="StudentGender">
                 <option></option>
                 <option></option>
                 <option></option>
