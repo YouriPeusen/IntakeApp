@@ -7,9 +7,9 @@ namespace IntakeApp.Classes
 {
 	public class Category
     {
-        private int categoryId;
-        private string categoryName;
-        private int categoryPoints;
+        public int categoryId { get; set; }
+        public string categoryName { get; set; }
+        public int categoryPoints { get; set; }
 
         public Category(int _categoryId, string _categoryName, int _categoryPoints)
         {

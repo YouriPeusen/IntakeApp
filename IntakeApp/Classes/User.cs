@@ -7,12 +7,12 @@ namespace IntakeApp.Classes
 {
 	public class User
     {
-        private int userId;
-        private string firstName;
-        private string lastName;
-        private string userName;
-        private string password;
-        private int userPoints;
+        public int userId { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string userName { get; set; }
+        public string password { get; set; }
+        public int userPoints { get; set; }
 
         public User(int _userId, string _firstname, string _lastname, string _userName, string _password, int _userPoints)
         {
