@@ -41,17 +41,7 @@ namespace ArticleApis.Controllers
         [HttpPost]
         public void InsertNewProduct(IntakeApp.Classes.Product product)
         {
-            SqlConnection con = dal.databaseConnect();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "insert into Products values (@productId, @categoryId, @productName, @productDescription)";
-            cmd.Parameters.AddWithValue("@productId", product.getId());
-            cmd.Parameters.AddWithValue("@categoryId", product.getCategory());
-            cmd.Parameters.AddWithValue("@productName", product.getName());
-            cmd.Parameters.AddWithValue("@productDescription", product.getDescription());
-            cmd.Connection = con;
-            cmd.ExecuteNonQuery();
-           
+            dal.AddNewProduct(product);
 
         }
     }

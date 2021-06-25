@@ -60,6 +60,42 @@ namespace IntakeApp.Classes
             con.Close();
         }
 
+        // Het toevoegen van een nieuwe categorie, voor de API
+        public void AddNewCategory(Category category)
+        {
+            SqlConnection con = databaseConnect();
+
+            SqlCommand cmd = new SqlCommand("insert into Categories (CategoryId, CategoryName, Points) values (@categoryId," +
+                "@categoryName,@points)", con);
+
+            cmd.Parameters.AddWithValue("@categoryId", category.GetCategoryId());
+            cmd.Parameters.AddWithValue("@categoryName", category.GetCategoryName());
+            cmd.Parameters.AddWithValue("@points", category.GetPoints());
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        // Het toevoegen van een nieuwe user, voor de API
+        public void AddNewUser(User user)
+        {
+            SqlConnection con = databaseConnect();
+
+            SqlCommand cmd = new SqlCommand("insert into Users (UserID, FirstName, LastName, UserName, Password, UserPoints) values (@userid," +
+                "@firstname,@lastname,@username,@password,@userpoints)", con);
+
+            cmd.Parameters.AddWithValue("@userid", user.GetId());
+            cmd.Parameters.AddWithValue("@firstname", user.GetFirst());
+            cmd.Parameters.AddWithValue("@lastname", user.GetLast());
+            cmd.Parameters.AddWithValue("@username", user.GetUserName());
+            cmd.Parameters.AddWithValue("@password", user.GetPassword());
+            cmd.Parameters.AddWithValue("@userpoints", user.GetPoints());
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+
         // Het ophalen van Category gegevens op basis van een ID
         public Category GetCategoryDetails(int categoryId)
         {
