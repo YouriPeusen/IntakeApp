@@ -33,9 +33,10 @@ namespace ArticleApis.Controllers
             
         }
 
-        // GET: api/Articles/5
+
+        //// GET: api/Articles/5
         //[HttpGet("{id}")]
-        //public async Task<ActionResult<Article>> GetArticle(int id)
+        //public async Task<ActionResult<Article>> GetArticle()
         //{
         //    var article = await _context.Articles.FindAsync(id);
 
