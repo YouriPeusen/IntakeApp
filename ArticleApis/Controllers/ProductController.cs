@@ -4,6 +4,7 @@ using IntakeApp.Repository;
 using IntakeApp.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -37,13 +38,16 @@ namespace ArticleApis.Controllers
 
         }
 
-        // POST
+        //POST
         [HttpPost]
-        public void InsertNewProduct([FromBody]int productId, int categoryId, string productName, string productDescription)
-        {
-            IntakeApp.Classes.Product product = new IntakeApp.Classes.Product(productId, categoryId, productName, productDescription);
-            dal.AddNewProduct(product);
+        public void InsertNewProduct([FromBody] object product)
+        { 
+            string json = JsonConvert.SerializeObject(product);
+            IntakeApp.Classes.Product deserializedProduct = JsonConvert.DeserializeObject<IntakeApp.Classes.Product>(json);
+
+            dal.AddNewProduct(deserializedProduct);
 
         }
+
     }
 }

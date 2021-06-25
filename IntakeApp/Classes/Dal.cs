@@ -65,10 +65,9 @@ namespace IntakeApp.Classes
         {
             SqlConnection con = databaseConnect();
 
-            SqlCommand cmd = new SqlCommand("insert into Categories (CategoryID, CategoryName, Points) values (@categoryId," +
-                "@categoryName,@points)", con);
+            SqlCommand cmd = new SqlCommand("insert into Categories (CategoryName, Points) values (@categoryName,@points)", con);
 
-            cmd.Parameters.AddWithValue("@categoryId", category.GetCategoryId());
+            //cmd.Parameters.AddWithValue("@categoryId", category.GetCategoryId());
             cmd.Parameters.AddWithValue("@categoryName", category.GetCategoryName());
             cmd.Parameters.AddWithValue("@points", category.GetPoints());
 
@@ -81,10 +80,9 @@ namespace IntakeApp.Classes
         {
             SqlConnection con = databaseConnect();
 
-            SqlCommand cmd = new SqlCommand("insert into Users (UserID, FirstName, LastName, UserName, Password, UserPoints) values (@userid," +
-                "@firstname,@lastname,@username,@password,@userpoints)", con);
+            SqlCommand cmd = new SqlCommand("insert into Users (FirstName, LastName, UserName, Password, UserPoints) values (@firstname,@lastname,@username,@password,@userpoints)", con);
 
-            cmd.Parameters.AddWithValue("@userid", user.GetId());
+            //cmd.Parameters.AddWithValue("@userid", user.GetId());
             cmd.Parameters.AddWithValue("@firstname", user.GetFirst());
             cmd.Parameters.AddWithValue("@lastname", user.GetLast());
             cmd.Parameters.AddWithValue("@username", user.GetUserName());
