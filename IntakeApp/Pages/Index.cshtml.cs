@@ -6,12 +6,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IntakeApp.Classes;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IntakeApp.Pages
 {
 	public class IndexModel : PageModel
 	{
 		private readonly ILogger<IndexModel> _logger;
+
+		[BindProperty]
+		public string Product { get; set; }
+		public List<SelectListItem> Ddl_Products { get; } = new List<SelectListItem>
+		{
+			//Vervangen door populatie vanuit de database
+			new SelectListItem { Value = "1", Text = "Product1"},
+			new SelectListItem { Value = "2", Text = "Product2"},
+			new SelectListItem { Value = "3", Text = "Product3"},
+		};
+		//public IEnumerable<SelectListItem> Products { get; set; }
+
+		Dal dal = new Dal();
 
 		public IndexModel(ILogger<IndexModel> logger)
 		{
@@ -22,10 +36,10 @@ namespace IntakeApp.Pages
 		{
 
 		}
-		Dal dal = new Dal();
 
 		public void OnPostInput()
 		{
+
 			// maak object van class op basis van invoerveld, doe vervolgens code uit dal daarmee
 			//DateTime dateOne = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
 			//DateTime dateTwo = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
