@@ -127,56 +127,56 @@
 
 </html>
 <div class="auto-style19">
-	<p class="site-title">
-		<a href="@Url.Action("Index", "Home")">
-			<img src="../Images/Ruiolwinkel Vaals Logo.png" alt="" />
-		</a>
-	</p>
-	<html>
-	<head>
-		<meta name="viewport" content="width=device-width" />
-		<title>Index</title>
-	</head>
-	<body>
-		<form asp-controller="Home">
-			<input id="fileupload" type="file" />
-			<hr />
-			<div id="dvPreview"></div>
-		</form>
-		<script type="text/javascript">
-			$(function () {
-				$("#fileupload").change(function () {
-					$("#dvPreview").html("");
-					var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-					if (regex.test($(this).val().toLowerCase())) {
-						if (typeof (FileReader) != "undefined") {
-							$("#dvPreview").show();
-							$("#dvPreview").append("<img />");
-							var reader = new FileReader();
-							reader.onload = function (e) {
-								$("#dvPreview img").attr("src", e.target.result);
-								$("#dvPreview img").attr("style", "height:200px;width: 200px");
-							}
-							reader.readAsDataURL($(this)[0].files[0]);
-						} else {
-							alert("This browser does not support FileReader.");
-						}
-					} else {
-						alert("Please upload a valid image file.");
-					}
-				});
-			});
-		</script>
-	</body>
+    <p class="site-title">
+        <a href="@Url.Action("Index", "Home")">
+            <img src="../Images/Ruiolwinkel Vaals Logo.png" alt="" />
+        </a>
+    </p>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <form asp-controller="Home">
+            <input id="fileupload" type="file" />
+            <hr />
+            <div id="dvPreview"></div>
+        </form>
+        <script type="text/javascript">
+            $(function () {
+                $("#fileupload").change(function () {
+                    $("#dvPreview").html("");
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    if (regex.test($(this).val().toLowerCase())) {
+                        if (typeof (FileReader) != "undefined") {
+                            $("#dvPreview").show();
+                            $("#dvPreview").append("<img />");
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $("#dvPreview img").attr("src", e.target.result);
+                                $("#dvPreview img").attr("style", "height:200px;width: 200px");
+                            }
+                            reader.readAsDataURL($(this)[0].files[0]);
+                        } else {
+                            alert("This browser does not support FileReader.");
+                        }
+                    } else {
+                        alert("Please upload a valid image file.");
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="auto-style15">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User
-</span>
-<asp:DropDownList ID="userChooser" runat="server" CssClass="auto-style15" DataSourceID="SqlDataSource5" DataTextField="FirstName" DataValueField="UserID">
-</asp:DropDownList>
+    <span class="auto-style15">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User
+        @Html.DropDownListFor(x => Model.User, new SelectList(Model.Ddl_User, "Value", "Text"), new { @class = "form-control" })
+    </span>
+
 <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -185,81 +185,81 @@
 	&nbsp;<br />
 <br />
 <table style="width:100%;" class="auto-style15">
-	<tr>
-		<td class="auto-style22"></td>
-		<td class="auto-style14">Category</td>
+    <tr>
+        <td class="auto-style22"></td>
+        <td class="auto-style14">Category</td>
         <td class="auto-style12">
             @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
         </td>
-	</tr>
-	<tr>
-		<td class="auto-style3">&nbsp;</td>
-		<td class="auto-style16">Product </td>
-		<td>
-			@Html.DropDownListFor(x => Model.Product, new SelectList(Model.Ddl_Products, "Value", "Text"), new { @class = "form-control" })
-		</td>
-	</tr>
-	<tr>
-		<td class="auto-style3">&nbsp;</td>
-		<td class="auto-style16">Description </td>
-		<td> <input id="productDescription" type="text" class="auto-style15" /></td>
-	</tr>
+    </tr>
+    <tr>
+        <td class="auto-style3">&nbsp;</td>
+        <td class="auto-style16">Product </td>
+        <td>
+            @Html.DropDownListFor(x => Model.Product, new SelectList(Model.Ddl_Products, "Value", "Text"), new { @class = "form-control" })
+        </td>
+    </tr>
+    <tr>
+        <td class="auto-style3">&nbsp;</td>
+        <td class="auto-style16">Description </td>
+        <td> <input id="productDescription" type="text" class="auto-style15" /></td>
+    </tr>
 </table>
 <table class="auto-style17">
-	<tr>
-		<td class="auto-style2">&nbsp;</td>
-		<td class="auto-style16">Status <!-- misschien automatiseren --></td>
+    <tr>
+        <td class="auto-style2">&nbsp;</td>
+        <td class="auto-style16">Status <!-- misschien automatiseren --></td>
         <td>
             @Html.DropDownListFor(x => Model.Status, new SelectList(Model.Ddl_Status, "Value", "Text"), new { @class = "form-control" })
         </td>
-	</tr>
-	<tr>
-		<td class="auto-style25"></td>
-		<td class="auto-style14">Commentary </td>
-		<td class="auto-style12"> <input id="commentary" runat="server" type="text" class="auto-style15" /></td>
-	</tr>
+    </tr>
+    <tr>
+        <td class="auto-style25"></td>
+        <td class="auto-style14">Commentary </td>
+        <td class="auto-style12"> <input id="commentary" runat="server" type="text" class="auto-style15" /></td>
+    </tr>
 </table>
 <p class="auto-style29">
-	<br />
-	<asp:Button ID="btnAddArticle0" runat="server" Text="Voeg artikel toe" OnClick="inputButton_Clicked" CssClass="auto-style15" />
-	&nbsp;<asp:Button ID="btnAddProduct" runat="server" Text="Submit" OnClick="addProductBtn_Clicked" CssClass="auto-style15" />
+    <br />
+    <asp:Button ID="btnAddArticle0" runat="server" Text="Voeg artikel toe" OnClick="inputButton_Clicked" CssClass="auto-style15" />
+    &nbsp;<asp:Button ID="btnAddProduct" runat="server" Text="Submit" OnClick="addProductBtn_Clicked" CssClass="auto-style15" />
 </p>
 <table class="auto-style15" style="width:100%;">
-	<tr>
-		<td class="auto-style28">&nbsp;</td>
-		<td class="auto-style30">Product name</td>
-		<td>
-			<input id="productName" runat="server" type="text" />
-		</td>
-	</tr>
-	<tr>
-		<td class="auto-style28">&nbsp;</td>
-		<td class="auto-style30">Category</td>
+    <tr>
+        <td class="auto-style28">&nbsp;</td>
+        <td class="auto-style30">Product name</td>
+        <td>
+            <input id="productName" runat="server" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td class="auto-style28">&nbsp;</td>
+        <td class="auto-style30">Category</td>
         <td>
             @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
         </td>
-	</tr>
-	<tr>
-		<td class="auto-style28">&nbsp;</td>
-		<td class="auto-style30">Product Description</td>
-		<td>
-			<input id="productDescriptionNA" runat="server" type="text" />
-		</td>
-	</tr>
+    </tr>
+    <tr>
+        <td class="auto-style28">&nbsp;</td>
+        <td class="auto-style30">Product Description</td>
+        <td>
+            <input id="productDescriptionNA" runat="server" type="text" />
+        </td>
+    </tr>
 </table>
 <div id="addNewProduct" class="auto-style18" draggable="true">
-	<p class="auto-style20">
-		<br />
-		&nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" CssClass="auto-style15">Add Product</button>
-		<asp:Button ID="btnAddProduct" runat="server" Text="Submit" OnClick="addProductBtn_Clicked" CssClass="auto-style15" />
-		<br />
-		&nbsp;<asp:Button ID="btnAddProduct" runat="server" CssClass="auto-style15" OnClick="addProductBtn_Clicked" Text="Add Product" />
-	</p>
-	<asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-	<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Categories]"></asp:SqlDataSource>
-	<asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Statusses]"></asp:SqlDataSource>
-	<asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Products]"></asp:SqlDataSource>
-	<asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Users]"></asp:SqlDataSource>
+    <p class="auto-style20">
+        <br />
+        &nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" CssClass="auto-style15">Add Product</button>
+        <asp:Button ID="btnAddProduct" runat="server" Text="Submit" OnClick="addProductBtn_Clicked" CssClass="auto-style15" />
+        <br />
+        &nbsp;<asp:Button ID="btnAddProduct" runat="server" CssClass="auto-style15" OnClick="addProductBtn_Clicked" Text="Add Product" />
+    </p>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Categories]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Statusses]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Products]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Users]"></asp:SqlDataSource>
 
 </div>
 </div>

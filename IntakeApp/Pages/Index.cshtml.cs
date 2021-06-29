@@ -30,6 +30,10 @@ namespace IntakeApp.Pages
 
 		public string Status { get; set; }
 		public List<SelectListItem> Ddl_Status { get; } = new List<SelectListItem> { };
+
+		public string User { get; set; }
+		public List<SelectListItem> Ddl_User { get; } = new List<SelectListItem> { };
+
 		public void OnGet()
 		{
 			//Populatie Productdropdownlist
@@ -47,6 +51,11 @@ namespace IntakeApp.Pages
 			foreach (Status Status in Statusses)
 			{
 				Ddl_Status.Add(new SelectListItem { Value = Status.GetStatusId().ToString(), Text = Status.GetStatusName() });
+			}
+			List<User> Users = dal.GetUser();
+			foreach (User User in Users)
+			{
+				Ddl_User.Add(new SelectListItem { Value = User.GetId().ToString(), Text = User.GetFirst() });
 			}
 		}
 		public void OnPostInput()

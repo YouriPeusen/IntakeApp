@@ -218,5 +218,31 @@ namespace IntakeApp.Classes
 
             return Statusses;
         }
+        public List<User> GetUser()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Users";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<User> Users = new List<User>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+                User User = new User(Convert.ToInt32(objectList[0]), objectList[1], objectList[2], objectList[3], objectList[4], Convert.ToInt32(objectList[5]));
+                Users.Add(User);
+                objectList.Clear();
+            }
+
+            return Users;
+        }
     }
 }
