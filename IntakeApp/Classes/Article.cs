@@ -58,6 +58,11 @@ namespace IntakeApp.Classes
             return providerId;
         }
 
+        public int getRenterId()
+		{
+            return renterId;
+		}
+
         public string getImage()
         {
             return image;

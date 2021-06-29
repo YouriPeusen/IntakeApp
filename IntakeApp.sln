@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntakeApp", "IntakeApp\Inta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleApis", "ArticleApis\ArticleApis.csproj", "{B4737060-9E77-4EAD-8ECD-9F71336BB7C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests-IntakeApp", "UnitTests-IntakeApp\UnitTests-IntakeApp.csproj", "{E8488EBC-F5F1-4737-B133-6F30634566DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B4737060-9E77-4EAD-8ECD-9F71336BB7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4737060-9E77-4EAD-8ECD-9F71336BB7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4737060-9E77-4EAD-8ECD-9F71336BB7C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8488EBC-F5F1-4737-B133-6F30634566DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8488EBC-F5F1-4737-B133-6F30634566DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8488EBC-F5F1-4737-B133-6F30634566DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8488EBC-F5F1-4737-B133-6F30634566DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
