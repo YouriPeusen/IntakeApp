@@ -67,8 +67,8 @@ namespace IntakeApp.Pages
             DateTime dateOne = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
 			DateTime dateTwo = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
 
-			int chosenProduct = Convert.ToInt32(Request.Form["Ddl_Products"]);
-			int chosenUser = Convert.ToInt32(Request.Form["Ddl_User"]);
+			int chosenProduct = Convert.ToInt32(Product);
+			int chosenUser = Convert.ToInt32(User);
 
 
             Article newArtcile = new Article(0, chosenProduct, 1, chosenUser, 0, dateOne, dateTwo, "test", "test");
@@ -95,7 +95,7 @@ namespace IntakeApp.Pages
 			//maak object van class op basis van invoerveld, doe vervolgens code uit dal daarmee
 			System.Diagnostics.Debug.WriteLine("hoi");
 
-			int chosenCategory = Convert.ToInt32(Request.Form["Ddl_Category"]);
+			int chosenCategory = Convert.ToInt32(Category);
             Product newProduct = new Product(0, chosenCategory, "test", "test");
         dal.AddNewProduct(newProduct);
 		}
