@@ -250,16 +250,9 @@
 <div id="addNewProduct" class="auto-style18" draggable="true">
     <p class="auto-style20">
         <br />
-        &nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" CssClass="auto-style15">Add Product</button>
-        <asp:Button ID="btnAddProduct" runat="server" Text="Submit" OnClick="addProductBtn_Clicked" CssClass="auto-style15" />
-        <br />
-        &nbsp;<asp:Button ID="btnAddProduct" runat="server" CssClass="auto-style15" OnClick="addProductBtn_Clicked" Text="Add Product" />
+        &nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" onclick="OnPostAddProduct" CssClass="auto-style15">Add Product</button>
+       
     </p>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Categories]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Statusses]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Products]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [Users]"></asp:SqlDataSource>
-
+   
 </div>
 </div>
