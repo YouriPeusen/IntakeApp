@@ -69,34 +69,35 @@ namespace IntakeApp.Pages
 
 			int chosenProduct = Convert.ToInt32(Product);
 			int chosenUser = Convert.ToInt32(User);
+			int chosenCategory = Convert.ToInt32(Category);
 
 
-            Article newArtcile = new Article(0, chosenProduct, 1, chosenUser, 0, dateOne, dateTwo, "test", "test");
+			Article newArtcile = new Article(0, chosenProduct, 1, chosenUser, 0, dateOne, dateTwo, "test", "test");
 			dal.AddNewArticle(newArtcile);
 
-			 //Het onderdeel dat bij het aanmaken van een nieuw artikel de punten bijschrijft bij de gebruiker.Via de ingevoerde categorie zoekt hij
-             //de bijbehorende punten. Hierna wordt de gebruiker gezocht op basis van de keuze. De punten uit de categorie worden bij deze gebruiker
-             //bijgeschreven. 
+            //Het onderdeel dat bij het aanmaken van een nieuw artikel de punten bijschrijft bij de gebruiker.Via de ingevoerde categorie zoekt hij
+            //de bijbehorende punten. Hierna wordt de gebruiker gezocht op basis van de keuze. De punten uit de categorie worden bij deze gebruiker
+            //bijgeschreven. 
 
 
-   //         int categoryId = Convert.ToInt32(categoryChooser.SelectedValue);
-			//Category fromCategory = dal.GetCategoryDetails(categoryId);
-			//int rewardedPoints = fromCategory.GetPoints();
+            int categoryId = chosenCategory;
+            Category fromCategory = dal.GetCategoryDetails(categoryId);
+            int rewardedPoints = fromCategory.GetPoints();
 
-			//Zoekt het userId op en voegt de punten toe bij de functie in de DAL.Het opzoeken van de user doet hij ook automatisch in deze
-			//functie.
+            //Zoekt het userId op en voegt de punten toe bij de functie in de DAL.Het opzoeken van de user doet hij ook automatisch in deze
+            //functie.
 
-		 //  int userId = Convert.ToInt32(userChooser.SelectedValue);
-			//dal.AddPointsToUser(userId, rewardedPoints);
-			}
+            int userId = chosenUser;
+            dal.AddPointsToUser(userId, rewardedPoints);
+        }
 
 		public void OnPostAddProduct()
 		{
 			//maak object van class op basis van invoerveld, doe vervolgens code uit dal daarmee
 			System.Diagnostics.Debug.WriteLine("hoi");
-
 			int chosenCategory = Convert.ToInt32(Category);
-            Product newProduct = new Product(0, chosenCategory, "test", "test");
+
+			Product newProduct = new Product(0, chosenCategory, "test", "test");
         dal.AddNewProduct(newProduct);
 		}
 	}
