@@ -43,7 +43,31 @@ namespace IntakeApp.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        public Category GetCategoryByProduct(int productId)
+        {
+            SqlConnection con = databaseConnect();
 
+            string cmd = "SELECT * FROM Categories, Products WHERE Categories.CategoryID = Products.CategoryID AND Products.ProductID = @productid";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            ad.SelectCommand.Parameters.AddWithValue("@productid", productId);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+
+            foreach (DataColumn col in dt.Columns)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+            }
+
+            Category currentCategory = new Category(Convert.ToInt32(objectList[0]), objectList[1].ToString(), Convert.ToInt32(objectList[2]));
+
+            return currentCategory;
+        }
         // Het toevoegen van een nieuw product
         public void AddNewProduct(Product newProduct)
         {
