@@ -26,12 +26,15 @@ namespace IntakeApp.Pages
 			_logger = logger;
 		}
 
+		[BindProperty]
 		public string Category { get; set; }
 		public List<SelectListItem> Ddl_Category { get; } = new List<SelectListItem> { };
 
+		[BindProperty]
 		public string Status { get; set; }
 		public List<SelectListItem> Ddl_Status { get; } = new List<SelectListItem> { };
 
+		[BindProperty]
 		public string User { get; set; }
 		public List<SelectListItem> Ddl_User { get; } = new List<SelectListItem> { };
 
@@ -88,16 +91,19 @@ namespace IntakeApp.Pages
 
             int userId = chosenUser;
             dal.AddPointsToUser(userId, rewardedPoints);
-        }
+			OnGet();
+		}
 
 		public void OnPostAddProduct()
 		{
 			//maak object van class op basis van invoerveld, doe vervolgens code uit dal daarmee
-			System.Diagnostics.Debug.WriteLine("hoi");
+			
 			int chosenCategory = Convert.ToInt32(Category);
 
 			Product newProduct = new Product(0, chosenCategory, "test", "test");
-        dal.AddNewProduct(newProduct);
+			System.Diagnostics.Debug.WriteLine(chosenCategory);
+			dal.AddNewProduct(newProduct);
+			OnGet();
 		}
 	}
 }
