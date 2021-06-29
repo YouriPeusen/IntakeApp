@@ -173,5 +173,110 @@ namespace IntakeApp.Classes
 
             this.updateUser(currentUser);
         }
+
+        public List<Product> GetProducts()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Products";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<Product> products = new List<Product>();
+
+            foreach (DataRow row in dt.Rows)
+			{
+                foreach(DataColumn col in dt.Columns)
+				{
+                    objectList.Add(row[col.ColumnName].ToString());
+				}
+                Product product = new Product(Convert.ToInt32(objectList[0]), Convert.ToInt32(objectList[1]), objectList[2], objectList[3]);
+                products.Add(product);
+                objectList.Clear();
+            }
+
+            return products;
+        }
+        public List<Category> GetCategorys()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Categories";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<Category> Categories = new List<Category>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+                Category Category = new Category(Convert.ToInt32(objectList[0]), objectList[1], Convert.ToInt32(objectList[2]));
+                Categories.Add(Category);
+                objectList.Clear();
+            }
+
+            return Categories;
+        }
+        public List<Status> GetStatus()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Statusses";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<Status> Statusses = new List<Status>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+                Status Status = new Status(Convert.ToInt32(objectList[0]), objectList[1]);
+                Statusses.Add(Status);
+                objectList.Clear();
+            }
+
+            return Statusses;
+        }
+        public List<User> GetUser()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Users";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<User> Users = new List<User>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+                User User = new User(Convert.ToInt32(objectList[0]), objectList[1], objectList[2], objectList[3], objectList[4], Convert.ToInt32(objectList[5]));
+                Users.Add(User);
+                objectList.Clear();
+            }
+
+            return Users;
+        }
     }
 }

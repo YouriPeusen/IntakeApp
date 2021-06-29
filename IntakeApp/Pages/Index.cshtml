@@ -170,13 +170,13 @@
     </body>
 </html>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="auto-style15">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User
-</span>
-<asp:DropDownList ID="userChooser" runat="server" CssClass="auto-style15" DataSourceID="SqlDataSource5" DataTextField="FirstName" DataValueField="UserID">
-</asp:DropDownList>
+    <span class="auto-style15">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User
+        @Html.DropDownListFor(x => Model.User, new SelectList(Model.Ddl_User, "Value", "Text"), new { @class = "form-control" })
+    </span>
+
 <br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -189,19 +189,14 @@
         <td class="auto-style22"></td>
         <td class="auto-style14">Category</td>
         <td class="auto-style12">
-            <select id="Select1" runat="server" name="D1">
-            </select>
+            @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
         </td>
     </tr>
     <tr>
         <td class="auto-style3">&nbsp;</td>
         <td class="auto-style16">Product </td>
         <td>
-            <select runat="server" DataSourceID="SqlDataSource2" class="form-control" id="Product" name="Product">
-                <option></option>
-                <option></option>
-                <option></option>
-            </select>
+            @Html.DropDownListFor(x => Model.Product, new SelectList(Model.Ddl_Products, "Value", "Text"), new { @class = "form-control" })
         </td>
     </tr>
     <tr>
@@ -215,11 +210,7 @@
         <td class="auto-style2">&nbsp;</td>
         <td class="auto-style16">Status <!-- misschien automatiseren --></td>
         <td>
-            <select runat="server" class="form-control" id="productDescription" name="productDescription">
-                <option></option>
-                <option></option>
-                <option></option>
-            </select>
+            @Html.DropDownListFor(x => Model.Status, new SelectList(Model.Ddl_Status, "Value", "Text"), new { @class = "form-control" })
         </td>
     </tr>
     <tr>
@@ -245,11 +236,7 @@
         <td class="auto-style28">&nbsp;</td>
         <td class="auto-style30">Category</td>
         <td>
-            <select class="form-control" id="Category" name="Category">
-                <option></option>
-                <option></option>
-                <option></option>
-            </select>
+            @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
         </td>
     </tr>
     <tr>
