@@ -186,19 +186,13 @@
 <br />
     <form method="post">
 <table style="width:100%;" class="auto-style15">
-    <tr>
-        <td class="auto-style22"></td>
-        <td class="auto-style14">Category</td>
-        <td class="auto-style12">
-            @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
-        </td>
-    </tr>
+   
     <tr>
         <td class="auto-style3">&nbsp;</td>
         <td class="auto-style16">Product </td>
         <td>
             @Html.DropDownListFor(x => Model.Product, new SelectList(Model.Ddl_Products, "Value", "Text"), new { @class = "form-control" })
-        </td>
+        </td>im
     </tr>
     <tr>
         <td class="auto-style3">&nbsp;</td>
