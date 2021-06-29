@@ -35,8 +35,9 @@ namespace IntakeApp.Pages
 		public List<SelectListItem> Ddl_Status { get; } = new List<SelectListItem> { };
 
 		[BindProperty]
-		public string User { get; set; }
+		public new string User { get; set; }
 		public List<SelectListItem> Ddl_User { get; } = new List<SelectListItem> { };
+
 
 		public void OnGet()
 		{
@@ -64,25 +65,28 @@ namespace IntakeApp.Pages
 		}
 		public void OnPostInput()
 		{
+			var articleCommentary = Request.Form["articleCommentary"];
+			//var articleImage = Request.Form["fileupload"];
 
+			
             //maak object van class op basis van invoerveld, doe vervolgens code uit dal daarmee
 
             DateTime dateOne = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
-			DateTime dateTwo = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            DateTime dateTwo = DateTime.ParseExact("06/04/2021 10:00", "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
 
-			int chosenProduct = Convert.ToInt32(Product);
-			int chosenUser = Convert.ToInt32(User);
+            int chosenProduct = Convert.ToInt32(Product);
+            int chosenUser = Convert.ToInt32(User);
+			System.Diagnostics.Debug.WriteLine(chosenUser);
 
-
-			Article newArtcile = new Article(0, chosenProduct, 1, chosenUser, 0, dateOne, dateTwo, "test", "test");
-			dal.AddNewArticle(newArtcile);
+			Article newArtcile = new Article(0, chosenProduct, 1, chosenUser, 0, dateOne, dateTwo, "leeg", articleCommentary);
+            dal.AddNewArticle(newArtcile);
 
             //Het onderdeel dat bij het aanmaken van een nieuw artikel de punten bijschrijft bij de gebruiker.Via de ingevoerde categorie zoekt hij
             //de bijbehorende punten. Hierna wordt de gebruiker gezocht op basis van de keuze. De punten uit de categorie worden bij deze gebruiker
             //bijgeschreven. 
 
 
-            
+
             Category fromCategory = dal.GetCategoryByProduct(chosenProduct);
             int rewardedPoints = fromCategory.GetPoints();
 
@@ -91,16 +95,18 @@ namespace IntakeApp.Pages
 
             int userId = chosenUser;
             dal.AddPointsToUser(userId, rewardedPoints);
-			OnGet();
-		}
+            OnGet();
+        }
 
 		public void OnPostAddProduct()
 		{
 			//maak object van class op basis van invoerveld, doe vervolgens code uit dal daarmee
 			
 			int chosenCategory = Convert.ToInt32(Category);
+			var productName = Request.Form["productName"];
+			var productDescription = Request.Form["productDescription"];
 
-			Product newProduct = new Product(0, chosenCategory, "test", "test");
+			Product newProduct = new Product(0, chosenCategory, productName, productDescription);
 			System.Diagnostics.Debug.WriteLine(chosenCategory);
 			dal.AddNewProduct(newProduct);
 			OnGet();

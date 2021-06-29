@@ -139,7 +139,7 @@
     </head>
     <body>
         <form asp-controller="Home">
-            <input id="fileupload" type="file" />
+            <input id="fileupload" name="fileupload" type="file" />
             <hr />
             <div id="dvPreview"></div>
         </form>
@@ -174,7 +174,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User
-        @Html.DropDownListFor(x => Model.User, new SelectList(Model.Ddl_User, "Value", "Text"), new { @class = "form-control" })
+        
     </span>
 
 <br />
@@ -186,7 +186,13 @@
 <br />
     <form method="post">
 <table style="width:100%;" class="auto-style15">
-   
+    <tr>
+        <td class="auto-style3">&nbsp;</td>
+        <td class="auto-style16">Gebruiker </td>
+        <td>
+            @Html.DropDownListFor(x => Model.User, new SelectList(Model.Ddl_User, "Value", "Text"), new { @class = "form-control" })
+        </td>im
+    </tr>
     <tr>
         <td class="auto-style3">&nbsp;</td>
         <td class="auto-style16">Product </td>
@@ -194,30 +200,26 @@
             @Html.DropDownListFor(x => Model.Product, new SelectList(Model.Ddl_Products, "Value", "Text"), new { @class = "form-control" })
         </td>im
     </tr>
-    <tr>
-        <td class="auto-style3">&nbsp;</td>
-        <td class="auto-style16">Description </td>
-        <td> <input id="productDescription" type="text" class="auto-style15" /></td>
-    </tr>
+    
 </table>
 <table class="auto-style17">
     
     <tr>
         <td class="auto-style25"></td>
         <td class="auto-style14">Commentary </td>
-        <td class="auto-style12"> <input id="commentary" runat="server" type="text" class="auto-style15" /></td>
+        <td class="auto-style12"> <input id="commentary" name="articleCommentary" runat="server" type="text" class="auto-style15" /></td>
     </tr>
 </table>
 <p class="auto-style29">
     <br />
-    &nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" onclick="OnPostAddProduct" CssClass="auto-style15">Add Product</button>
+    &nbsp;<button asp-page-handler="Input" ID="btnAddProduct" runat="server" onclick="OnPostInput" CssClass="auto-style15">Add Product</button>
 </p>
 <table class="auto-style15" style="width:100%;">
     <tr>
         <td class="auto-style28">&nbsp;</td>
         <td class="auto-style30">Product name</td>
         <td>
-            <input id="productName" runat="server" type="text" />
+            <input id="productName" name="productName" runat="server" type="text" />
         </td>
     </tr>
     <tr>
@@ -231,7 +233,7 @@
         <td class="auto-style28">&nbsp;</td>
         <td class="auto-style30">Product Description</td>
         <td>
-            <input id="productDescriptionNA" runat="server" type="text" />
+            <input id="productDescription" name="productDescription" runat="server" type="text" />
         </td>
     </tr>
 </table>
