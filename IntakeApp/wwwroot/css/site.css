@@ -59,8 +59,14 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    background-image: url('../Images/Background intake.png');
+    background-size: cover;
+    padding-bottom: 20px;
+    padding-top: 50px;
+    background-repeat: no-repeat;
+    margin: auto;
+    background-position: center center;
 }
 .footer {
   position: absolute;
@@ -68,4 +74,10 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+protected void ddlTest_SelectedIndexChanged(object sender, EventArgs e) {
+    string selectedText = ddlTest.SelectedItem.Text;
+    string selectedValue = ddlTest.SelectedItem.Value;
+    //--- Show results in page. Response.Write("Selected Text is " + selectedText + " and selected value is :" + selectedValue);
 }

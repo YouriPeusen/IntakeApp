@@ -7,10 +7,10 @@ namespace IntakeApp.Classes
 {
 	public class Product
     {
-        private int productId;
-        private int categoryId;
-        private string productName;
-        private string productDescription;
+        public int productId { get; set; }
+        public int categoryId { get; set; }
+        public string productName { get; set; }
+        public string productDescription { get; set; }
 
 
         public Product(int _productId, int _categoryId, string _productName, string _productDescription)
@@ -21,6 +21,10 @@ namespace IntakeApp.Classes
             this.productDescription = _productDescription;
         }
 
+        public int getId()
+        {
+            return this.productId;
+        }
         public int getCategory()
         {
             return this.categoryId;
