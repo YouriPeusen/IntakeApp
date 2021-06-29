@@ -221,8 +221,7 @@
 </table>
 <p class="auto-style29">
     <br />
-    <asp:Button ID="btnAddArticle0" runat="server" Text="Voeg artikel toe" OnClick="inputButton_Clicked" CssClass="auto-style15" />
-    &nbsp;<asp:Button ID="btnAddProduct" runat="server" Text="Submit" OnClick="addProductBtn_Clicked" CssClass="auto-style15" />
+    &nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" onclick="OnPostAddProduct" CssClass="auto-style15">Add Product</button>
 </p>
 <table class="auto-style15" style="width:100%;">
     <tr>
@@ -250,7 +249,7 @@
 <div id="addNewProduct" class="auto-style18" draggable="true">
     <p class="auto-style20">
         <br />
-        &nbsp;<button asp-page-handler="AddProduct" ID="btnAddProduct" runat="server" onclick="OnPostAddProduct" CssClass="auto-style15">Add Product</button>
+        &nbsp;<button asp-page-handler="AddNewProduct" ID="btnAddNewProduct" runat="server" onclick="OnPostAddProduct" CssClass="auto-style15">Add New Product</button>
        
     </p>
    
