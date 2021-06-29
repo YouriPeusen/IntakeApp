@@ -18,23 +18,23 @@ namespace IntakeApp.Pages
 		public string Product { get; set; }
 		public List<SelectListItem> Ddl_Products { get; } = new List<SelectListItem> { };
 
-		public string Category { get; set; }
-		public List<SelectListItem> Ddl_Category { get; } = new List<SelectListItem> { };
-
-		public string Status { get; set; }
-		public List<SelectListItem> Ddl_Status { get; } = new List<SelectListItem> { };
-
 		Dal dal = new Dal();
 
 		public IndexModel(ILogger<IndexModel> logger)
 		{
 			_logger = logger;
 		}
+
+		public string Category { get; set; }
+		public List<SelectListItem> Ddl_Category { get; } = new List<SelectListItem> { };
+
+		public string Status { get; set; }
+		public List<SelectListItem> Ddl_Status { get; } = new List<SelectListItem> { };
 		public void OnGet()
 		{
 			//Populatie Productdropdownlist
 			List<Product> products = dal.GetProducts();
-			foreach(Product product in products)
+			foreach (Product product in products)
 			{
 				Ddl_Products.Add(new SelectListItem { Value = product.getProductId().ToString(), Text = product.getName() });
 			}
@@ -48,7 +48,7 @@ namespace IntakeApp.Pages
 			{
 				Ddl_Status.Add(new SelectListItem { Value = Status.GetStatusId().ToString(), Text = Status.GetStatusName() });
 			}
-
+		}
 		public void OnPostInput()
 		{
 
