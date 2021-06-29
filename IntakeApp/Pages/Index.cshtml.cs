@@ -69,7 +69,6 @@ namespace IntakeApp.Pages
 
 			int chosenProduct = Convert.ToInt32(Product);
 			int chosenUser = Convert.ToInt32(User);
-			int chosenCategory = Convert.ToInt32(Category);
 
 
 			Article newArtcile = new Article(0, chosenProduct, 1, chosenUser, 0, dateOne, dateTwo, "test", "test");
@@ -80,8 +79,8 @@ namespace IntakeApp.Pages
             //bijgeschreven. 
 
 
-            int categoryId = chosenCategory;
-            Category fromCategory = dal.GetCategoryDetails(categoryId);
+            
+            Category fromCategory = dal.GetCategoryByProduct(chosenProduct);
             int rewardedPoints = fromCategory.GetPoints();
 
             //Zoekt het userId op en voegt de punten toe bij de functie in de DAL.Het opzoeken van de user doet hij ook automatisch in deze
