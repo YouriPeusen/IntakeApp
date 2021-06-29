@@ -16,14 +16,7 @@ namespace IntakeApp.Pages
 
 		[BindProperty]
 		public string Product { get; set; }
-		public List<SelectListItem> Ddl_Products { get; } = new List<SelectListItem>
-		{
-			//Vervangen door populatie vanuit de database
-			new SelectListItem { Value = "1", Text = "Product1"},
-			new SelectListItem { Value = "2", Text = "Product2"},
-			new SelectListItem { Value = "3", Text = "Product3"},
-		};
-		//public IEnumerable<SelectListItem> Products { get; set; }
+		public List<SelectListItem> Ddl_Products { get; } = new List<SelectListItem> { };
 
 		Dal dal = new Dal();
 
@@ -34,7 +27,12 @@ namespace IntakeApp.Pages
 
 		public void OnGet()
 		{
-
+			//Populatie Productdropdownlist
+			List<Product> products = dal.GetProducts();
+			foreach(Product product in products)
+			{
+				Ddl_Products.Add(new SelectListItem { Value = product.getProductId().ToString(), Text = product.getName() });
+			}
 		}
 
 		public void OnPostInput()

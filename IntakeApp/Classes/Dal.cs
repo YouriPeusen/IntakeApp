@@ -139,5 +139,32 @@ namespace IntakeApp.Classes
 
             this.updateUser(currentUser);
         }
+
+        public List<Product> GetProducts()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Products";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<Product> products = new List<Product>();
+
+            foreach (DataRow row in dt.Rows)
+			{
+                foreach(DataColumn col in dt.Columns)
+				{
+                    objectList.Add(row[col.ColumnName].ToString());
+				}
+                Product product = new Product(Convert.ToInt32(objectList[0]), Convert.ToInt32(objectList[1]), objectList[2], objectList[3]);
+                products.Add(product);
+                objectList.Clear();
+            }
+
+            return products;
+        }
     }
 }
