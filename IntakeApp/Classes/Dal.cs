@@ -166,5 +166,57 @@ namespace IntakeApp.Classes
 
             return products;
         }
+        public List<Category> GetCategorys()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Categories";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<Category> Categories = new List<Category>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+                Category Category = new Category(Convert.ToInt32(objectList[0]), objectList[1], Convert.ToInt32(objectList[2]));
+                Categories.Add(Category);
+                objectList.Clear();
+            }
+
+            return Categories;
+        }
+        public List<Status> GetStatus()
+        {
+            SqlConnection con = databaseConnect();
+
+            string cmd = "SELECT * FROM Statusses";
+
+            SqlDataAdapter ad = new SqlDataAdapter(cmd, con);
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+
+            List<string> objectList = new List<string>();
+            List<Status> Statusses = new List<Status>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    objectList.Add(row[col.ColumnName].ToString());
+                }
+                Status Status = new Status(Convert.ToInt32(objectList[0]), objectList[1]);
+                Statusses.Add(Status);
+                objectList.Clear();
+            }
+
+            return Statusses;
+        }
     }
 }

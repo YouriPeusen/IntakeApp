@@ -188,10 +188,9 @@
 	<tr>
 		<td class="auto-style22"></td>
 		<td class="auto-style14">Category</td>
-		<td class="auto-style12">
-			<select id="Select1" runat="server" name="D1">
-			</select>
-		</td>
+        <td class="auto-style12">
+            @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
+        </td>
 	</tr>
 	<tr>
 		<td class="auto-style3">&nbsp;</td>
@@ -210,13 +209,9 @@
 	<tr>
 		<td class="auto-style2">&nbsp;</td>
 		<td class="auto-style16">Status <!-- misschien automatiseren --></td>
-		<td>
-			<select runat="server" class="form-control" id="productDescription" name="productDescription">
-				<option></option>
-				<option></option>
-				<option></option>
-			</select>
-		</td>
+        <td>
+            @Html.DropDownListFor(x => Model.Status, new SelectList(Model.Ddl_Status, "Value", "Text"), new { @class = "form-control" })
+        </td>
 	</tr>
 	<tr>
 		<td class="auto-style25"></td>
@@ -240,13 +235,9 @@
 	<tr>
 		<td class="auto-style28">&nbsp;</td>
 		<td class="auto-style30">Category</td>
-		<td>
-			<select class="form-control" id="Category" name="Category">
-				<option></option>
-				<option></option>
-				<option></option>
-			</select>
-		</td>
+        <td>
+            @Html.DropDownListFor(x => Model.Category, new SelectList(Model.Ddl_Category, "Value", "Text"), new { @class = "form-control" })
+        </td>
 	</tr>
 	<tr>
 		<td class="auto-style28">&nbsp;</td>
