@@ -10,6 +10,7 @@ using IntakeApp.Repository;
 using IntakeApp.Repository.Models;
 using IntakeApp.Classes;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace ArticleApis.Controllers
 {
@@ -25,25 +26,35 @@ namespace ArticleApis.Controllers
             _context = context;
         }
 
-        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<IntakeApp.Repository.Models.User>>> GetUsers()
+        public async Task<IActionResult> GetAllCategoriesFromAPI()
         {
-            using (var contextt = new b2d_4_4_intakeapp_dbDbContext())
+            var client = new RestClient($"https://testeppie20210607124001.azurewebsites.net/AspNetUser/All");
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
             {
-                return await contextt.Users.ToListAsync();
+
+                this.InsertNewUser(response.Content);
+
             }
 
+            return Ok();
         }
 
         //POST
         [HttpPost]
         public void InsertNewUser([FromBody] object user)
         {
-            string json = JsonConvert.SerializeObject(user);
-            IntakeApp.Classes.User deserializedProduct = JsonConvert.DeserializeObject<IntakeApp.Classes.User>(json);
+            String json = user.ToString();
+            var deserializedUser = new List<IntakeApp.Classes.User>();
+            deserializedUser = JsonConvert.DeserializeObject<List<IntakeApp.Classes.User>>(json);
 
-            dal.AddNewUser(deserializedProduct);
+
+            foreach (IntakeApp.Classes.User userInList in deserializedUser)
+            {
+                dal.AddNewUser(userInList);
+            }
 
         }
     }

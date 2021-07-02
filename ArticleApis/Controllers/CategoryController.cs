@@ -5,6 +5,7 @@ using IntakeApp.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -27,14 +28,36 @@ namespace ArticleApis.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategoriesFromAPI()
+        {
+            var client = new RestClient($"https://ruilwinkelvaalsproductbeheer.azurewebsites.net/api/Category/GetAllCategoriesWithPoints");
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                
+                this.InsertNewCategory(response.Content);
+
+            }
+
+            return Ok();
+        }
+
         //POST
         [HttpPost]
         public void InsertNewCategory([FromBody] object category)
         {
-            string json = JsonConvert.SerializeObject(category);
-            IntakeApp.Classes.Category deserializedProduct = JsonConvert.DeserializeObject<IntakeApp.Classes.Category>(json);
+            String json = category.ToString();
+            System.Diagnostics.Debug.WriteLine(json);
+            var deserializedCategory = new List<IntakeApp.Classes.Category>();
+            deserializedCategory = JsonConvert.DeserializeObject<List<IntakeApp.Classes.Category>>(json);
 
-            dal.AddNewCategory(deserializedProduct);
+
+            foreach (IntakeApp.Classes.Category categoryInList in deserializedCategory)
+            {
+                dal.AddNewCategory(categoryInList);
+            }
 
         }
     }
