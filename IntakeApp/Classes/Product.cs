@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,13 @@ namespace IntakeApp.Classes
 {
 	public class Product
     {
+        [JsonProperty("ID")]
         private int productId;
+        [JsonProperty("CategorieID")]
         private int categoryId;
+        [JsonProperty("ProductName")]
         private string productName;
+        [JsonProperty("Description")]
         private string productDescription;
 
 
@@ -45,5 +50,10 @@ namespace IntakeApp.Classes
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class objJSON
+    {
+        public Product Product { get; set; }
     }
 }

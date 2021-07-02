@@ -5,11 +5,14 @@ using IntakeApp.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace ArticleApis.Controllers
 {
@@ -41,12 +44,35 @@ namespace ArticleApis.Controllers
         //POST
         [HttpPost]
         public void InsertNewProduct([FromBody] object product)
-        { 
-            string json = JsonConvert.SerializeObject(product);
-            IntakeApp.Classes.Product deserializedProduct = JsonConvert.DeserializeObject<IntakeApp.Classes.Product>(json);
+        {
+            String json = product.ToString();
+            System.Diagnostics.Debug.WriteLine(json);
+            var deserializedProduct = new List<IntakeApp.Classes.Product>();
+            deserializedProduct = JsonConvert.DeserializeObject<List<IntakeApp.Classes.Product>>(json);
+            
 
-            dal.AddNewProduct(deserializedProduct);
+            foreach(IntakeApp.Classes.Product productInList in deserializedProduct)
+            {
+                dal.AddNewProduct(productInList);
+            }
+        }
 
+        // Get external products
+        [HttpGet]
+        [Route("ProductAPI")]
+        public async Task<IActionResult> GetAllProductsFromAPI()
+        {
+            var client = new RestClient($"https://ruilwinkelvaalsproductbeheer.azurewebsites.net/api/Product/GetAllProducts");
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                //var content = JsonConvert.DeserializeObject<JToken>(response.Content);
+                this.InsertNewProduct(response.Content);
+
+            }
+
+            return Ok();
         }
 
     }
