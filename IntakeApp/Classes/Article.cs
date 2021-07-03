@@ -67,5 +67,9 @@ namespace IntakeApp.Classes
         {
             return commentary;
         }
+        public int getRenterId()
+		{
+            return renterId;
+		}
     }
 }
